@@ -1,0 +1,12 @@
+{
+    "name": "wildemitter",
+    "version": "0.0.1",
+    "author": "Henrik Joreteg <henrik@andyet.net>",
+    "description": "A super lightweight EventEmitter similar to what comes in Node.js, but with a support for wildcard events '*'",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HenrikJoreteg/wildemitter.git"
+    },
+    "keywords": ["events", "emitter", "browser"],
+    "main": "wildemitter.js"
+}
