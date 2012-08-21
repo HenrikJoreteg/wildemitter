@@ -65,6 +65,8 @@ apple.off('test');
 "*" handler called { '0': 'test', '1': 'apple' }
 "te*" handler called { '0': 'test', '1': 'apple' }
 */
+```
+
 
 ##License
 MIT
