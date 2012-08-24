@@ -1,16 +1,19 @@
-#WildEmitter
+# WildEmitter - A lightweight event emitter that supports wildcard handlers
 
-##What is it?
-A super lightweight EventEmitter similar to what comes in Node.js, but with a few specific differences:
+## What's an event emitter?
+If you've ever listened for a click event in a browser you've used an emitter. But, user interaction isn't the only thing that can trigger an event worth listening to. You can also make other objects capable of emitting events. That's what wildemitter is for. You can extend your objects with it so that you can emit events from them and register handlers on them. This pattern helps you write more re-usable code becaause your objct doen't have to know how it's going to be used. It can simply emit events any time something happens that other code *may* be interested in.
 
-- works in the browser (using some type of CommonJS module adapter, like stitch or browserify)
-- support wildcard handlers: `emitter.on('*', doSomething)` or `emitter.on('myNamespace*', doSomething)`
+You'll see this type of pattern a lot in node.js. Where lots of things in the standard libraries inherit from EventEmitter and emit various events to indicate progress, errors, completion, etc.
 
-This is largely based on the emitter in @visionmedia's UIKit. So, much props there. I just wanted it as a standalone on npm and with support for `*` handlers.
+So, why make another one? Aren't there others already?
+
+Well, yes there are, but not quite what I wanted. This one is largely based on the emitter in @visionmedia's UIKit. So, much props to TJ for that. But there were a few more things I wanted. Specifically the following:
+- Super lightweight
+- Support for browser/node.js (browser use requires a CommonJS wrapper of some kind, like Stitch or Browserify)
+- Support for wildcard handlers (`*` or `something*`)
+- Support for grouping registered handlers and aun unbinding them all by their group name. This is really handy when, for example, you want unbind all handlers associated with a given "sub-page" within a single page app. 
 
 ##How do I use it?
-
-You can use it to add event capabilities to other objects you build like so:
 
 ```js
 var Emitter = require('./wildemitter');
@@ -65,8 +68,23 @@ apple.off('test');
 "*" handler called { '0': 'test', '1': 'apple' }
 "te*" handler called { '0': 'test', '1': 'apple' }
 */
+
+// grouped handlers example, we'll create another fruit
+var orange = new Fruit('orange');
+
+// In this case "today" is the name of the group.
+// here we'll bind some handlers that all pass 'today'
+// as the group name
+orange.on('test', 'today', someHandler);
+orange.on('someOtherEvent', 'today', someHandler);
+orange.on('*', 'today', someHandler);
+
+// we can now unbind all three of those handlers like this
+orange.releaseGroup('today');
 ```
 
+## Testing
+You can run the tests with `nodeunit` by running: `nodeunit test.js`
 
 ##License
 MIT

@@ -1,5 +1,4 @@
-var repl = require('repl'),
-    Emitter = require('./wildemitter');
+var Emitter = require('./wildemitter');
 
 
 function Fruit(name) {
@@ -14,30 +13,53 @@ Fruit.prototype.test = function () {
 };
 
 // set up some test fruits
-var fruit1 = new Fruit('apple'),
-    fruit2 = new Fruit('orange');
+var apple = new Fruit('apple'),
+    orange = new Fruit('orange');
 
-fruit1.on('*', function () {
-    console.log('"*" handler called', arguments);
-});
+exports['Make sure wildcard handlers work'] = function (test) {
+    var count = 0, 
+        cb = function () {
+            return function () {count++}
+        };
+    
+    apple.on('*', cb());
+    apple.on('te*', cb());
+    apple.on('test', cb());
+    apple.test();
 
-fruit1.on('te*', function () {
-    console.log('"te*" handler called', arguments);
-});
+    // sanity check to make sure we've got the emitter isolated to the instance
+    orange.test();
 
-fruit1.on('test', function () {
-    console.log('"test" handler called', arguments);
-});
+    test.equal(count, 3);
 
-fruit1.test();
-// just making sure we've got the emitter isolated to the instance
-fruit2.test();
+    apple.off('test');
 
+    // reset our counter
+    count = 0;
+    apple.test();
 
-fruit1.off('test');
+    test.equal(count, 2);
+    test.done();
+};
 
-console.log('should be 3 logs');
+exports['Test group binding and unbinding'] = function (test) {
+    var count = 0, 
+        cb = function () {
+            return function () {count++}
+        };
 
+    // test our groups
+    orange.on('test', 'lumped', cb());
+    orange.on('test', 'lumped', cb());
+    orange.on('test', 'lumped', cb());
+    orange.on('test', cb());
+    orange.test();
+    test.equal(count, 4);
 
-fruit1.test();
-console.log('should be 2 logs now');
+    count = 0;
+    orange.releaseGroup('lumped');
+    orange.test();
+
+    test.equal(count, 1);
+    test.done();
+};

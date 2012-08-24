@@ -23,9 +23,13 @@ function WildEmitter() {
     this.callbacks = {};
 }
 
-// Listen on the given `event` with `fn`.
-WildEmitter.prototype.on = function (event, fn) {
-    (this.callbacks[event] = this.callbacks[event] || []).push(fn);
+// Listen on the given `event` with `fn`. Store a group name if present.
+WildEmitter.prototype.on = function (event, groupName, fn) {
+    var hasGroup = (arguments.length === 3),
+        group = hasGroup ? arguments[1] : undefined, 
+        func = hasGroup ? arguments[2] : arguments[1];
+    func._groupName = group;
+    (this.callbacks[event] = this.callbacks[event] || []).push(func);
     return this;
 };
 
@@ -38,6 +42,24 @@ WildEmitter.prototype.once = function (event, fn) {
         fn.apply(this, arguments);
     }
     this.on(event, on);
+    return this;
+};
+
+// Unbinds an entire group
+WildEmitter.prototype.releaseGroup = function (groupName) {
+    var item, i, len, handlers;
+    for (item in this.callbacks) {
+        handlers = this.callbacks[item];
+        for (i = 0, len = handlers.length; i < len; i++) {
+            if (handlers[i]._groupName === groupName) {
+                //console.log('removing');
+                // remove it and shorten the array we're looping through
+                handlers.splice(i, 1);
+                i--;
+                len--;
+            }
+        }
+    }
     return this;
 };
 
@@ -86,7 +108,7 @@ WildEmitter.prototype.emit = function (event) {
     return this;
 };
 
-
+// Helper for for finding special wildcard event handlers that match the event
 WildEmitter.prototype.getWildcardCallbacks = function (eventName) {
     var item,
         split,
