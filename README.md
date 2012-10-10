@@ -83,6 +83,9 @@ orange.on('*', 'today', someHandler);
 orange.releaseGroup('today');
 ```
 
+## Including
+Emitters are often something you want to be able to include in another lib. There's also file called wildemitter-bare.js that doesn't have any export mechanism.
+
 ## Testing
 You can run the tests with `nodeunit` by running: `nodeunit test.js`
 
