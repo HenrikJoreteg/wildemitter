@@ -14,6 +14,7 @@ Well, yes there are, but not quite what I wanted. This one is largely based on t
 - Support for grouping registered handlers and aun unbinding them all by their group name. This is really handy when, for example, you want unbind all handlers associated with a given "sub-page" within a single page app. 
 
 ##How do I use it?
+<a href="https://www.runnable.com/#henrikjoreteg/wildemitter/app.js/launch" target="_blank"><img src="https://www.runnable.com/external/styles/assets/runnablebtn.png" style="width:67px;height:25px;"></a>
 
 ```js
 var Emitter = require('./wildemitter');
