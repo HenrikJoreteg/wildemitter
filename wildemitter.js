@@ -95,13 +95,21 @@ WildEmitter.prototype.emit = function (event) {
 
     if (callbacks) {
         for (i = 0, len = callbacks.length; i < len; ++i) {
-            callbacks[i].apply(this, args);
+            if (callbacks[i]) {
+                callbacks[i].apply(this, args);
+            } else {
+                break;
+            }
         }
     }
 
     if (specialCallbacks) {
         for (i = 0, len = specialCallbacks.length; i < len; ++i) {
-            specialCallbacks[i].apply(this, [event].concat(args));
+            if (specialCallbacks[i]) {
+                specialCallbacks[i].apply(this, [event].concat(args));
+            } else {
+                break;
+            }
         }
     }
 
