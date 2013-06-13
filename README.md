@@ -89,6 +89,14 @@ Emitters are often something you want to be able to include in another lib. Ther
 ## Testing
 You can run the tests with `nodeunit` by running: `nodeunit test.js`
 
+## Credits
+
+Written by [@HenrikJoreteg](http://twitter.com/henrikjoreteg) inspired by TJ's emitter component. 
+
+Contributors:
+
+- [Lance Stout](http://github.com/legastero)
+
 ##License
 MIT
 
