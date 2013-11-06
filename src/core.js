@@ -106,7 +106,7 @@ WildEmitter.prototype.getWildcardCallbacks = function (eventName) {
 
     for (item in this.callbacks) {
         split = item.split('*');
-        if (item === '*' || (split.length === 2 && eventName.slice(0, split[1].length) === split[1])) {
+        if (item === '*' || (split.length === 2 && eventName.slice(0, split[0].length) === split[0])) {
             result = result.concat(this.callbacks[item]);
         }
     }
