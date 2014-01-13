@@ -8,6 +8,9 @@
           "email": "lance@andyet.net"
         } 
     ],
+    "scripts": {
+      "test": "nodeunit test.js"
+    },
     "description": "A super lightweight EventEmitter similar to what comes in Node.js, but with a support for wildcard events '*' and grouped handlers",
     "repository": {
         "type": "git",
@@ -16,7 +19,8 @@
     "devDependencies": {
         "mustache": "",
         "yetify": "",
-        "colors": ""
+        "colors": "",
+        "nodeunit": "~0.8.2"
     },
     "keywords": ["events", "emitter", "browser"],
     "main": "wildemitter.js"
