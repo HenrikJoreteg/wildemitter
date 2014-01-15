@@ -63,3 +63,54 @@ exports['Test group binding and unbinding'] = function (test) {
     test.equal(count, 1);
     test.done();
 };
+
+exports['Test once for multiple functions'] = function (test) {
+    var count, cb1, cb2;
+
+    count = 0;
+    cb1 = function () {
+        count++;
+    };
+    cb2 = function () {
+        count++;
+    };
+
+    orange.once('test', cb1);
+    orange.once('test', cb2);
+    orange.test();
+
+    test.equal(count, 2);
+
+    orange.test();
+    test.equal(count, 2);
+
+    test.done();
+};
+
+exports['Test on and off'] = function (test) {
+    var count, cb1, cb2;
+
+    count = 0;
+    cb1 = function () {
+        count++;
+    };
+    cb2 = function () {
+        count++;
+    };
+
+    orange.once('test', cb1);
+    orange.once('test2', cb2);
+    orange.test();
+
+    test.equal(count, 1);
+
+    orange.off(cb1);
+    orange.test();
+    test.equal(count, 1);
+
+    orange.emit('test2');
+    test.equal(count, 2);
+
+    test.done();
+};
+
