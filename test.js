@@ -98,13 +98,13 @@ exports['Test on and off'] = function (test) {
         count++;
     };
 
-    orange.once('test', cb1);
-    orange.once('test2', cb2);
+    orange.on('test', cb1);
+    orange.on('test2', cb2);
     orange.test();
 
     test.equal(count, 1);
 
-    orange.off(cb1);
+    orange.off('test', cb1);
     orange.test();
     test.equal(count, 1);
 
