@@ -73,12 +73,14 @@ WildEmitter.prototype.emit = function (event) {
         specialCallbacks = this.getWildcardCallbacks(event),
         i,
         len,
-        item;
+        item,
+        listeners;
 
     if (callbacks) {
-        for (i = 0, len = callbacks.length; i < len; ++i) {
-            if (callbacks[i]) {
-                callbacks[i].apply(this, args);
+        listeners = callbacks.slice();
+        for (i = 0, len = listeners.length; i < len; ++i) {
+            if (listeners[i]) {
+                listeners[i].apply(this, args);
             } else {
                 break;
             }
@@ -86,9 +88,11 @@ WildEmitter.prototype.emit = function (event) {
     }
 
     if (specialCallbacks) {
-        for (i = 0, len = specialCallbacks.length; i < len; ++i) {
-            if (specialCallbacks[i]) {
-                specialCallbacks[i].apply(this, [event].concat(args));
+        len = specialCallbacks.length;
+        listeners = specialCallbacks.slice();
+        for (i = 0, len = listeners.length; i < len; ++i) {
+            if (listeners[i]) {
+                listeners[i].apply(this, [event].concat(args));
             } else {
                 break;
             }
