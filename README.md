@@ -84,18 +84,25 @@ orange.releaseGroup('today');
 ```
 
 ## Including
+
 Emitters are often something you want to be able to include in another lib. There's also file called wildemitter-bare.js that doesn't have any export mechanism.
 
-## Testing
-You can run the tests with `nodeunit` by running: `nodeunit test.js`
+## Building/Testing
+
+1. Edit files in `/src`
+2. Run `npm test`
+
+You can also run build by itself: `npm run build`
+
+## Changelog
+
+v1.0.0 [diff](https://github.com/henrikjoreteg/wildemitter/compare/v0.0.5...v1.0.0) - Copy emitter array before firing. Though its unlikely this could impact how your application functions, hence bumping the 1st major version number per semver conventions.
 
 ## Credits
 
 Written by [@HenrikJoreteg](http://twitter.com/henrikjoreteg) inspired by TJ's emitter component. 
 
-Contributors:
-
-- [Lance Stout](http://github.com/legastero)
+Contributors: https://github.com/HenrikJoreteg/wildemitter/graphs/contributors
 
 ##License
 MIT
