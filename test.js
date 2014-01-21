@@ -24,6 +24,8 @@ exports['Make sure wildcard handlers work'] = function (test) {
     
     apple.on('*', cb());
     apple.on('te*', cb());
+    // This should NOT add to count. Regression test for issue #4
+    apple.on('other*', cb());
     apple.on('test', cb());
     apple.test();
 
