@@ -96,7 +96,8 @@ You can also run build by itself: `npm run build`
 
 ## Changelog
 
-v1.0.0 [diff](https://github.com/henrikjoreteg/wildemitter/compare/v0.0.5...v1.0.0) - Copy emitter array before firing. Though its unlikely this could impact how your application functions, hence bumping the 1st major version number per semver conventions.
+- v1.0.1 [diff](https://github.com/henrikjoreteg/wildemitter/compare/v1.0.0...v1.0.1) - Fixes wildcard matching issue.
+- v1.0.0 [diff](https://github.com/henrikjoreteg/wildemitter/compare/v0.0.5...v1.0.0) - Copy emitter array before firing. Though its unlikely this could impact how your application functions, hence bumping the 1st major version number per semver conventions.
 
 ## Credits
 
