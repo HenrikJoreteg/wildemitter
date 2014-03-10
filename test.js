@@ -17,11 +17,11 @@ var apple = new Fruit('apple'),
     orange = new Fruit('orange');
 
 exports['Make sure wildcard handlers work'] = function (test) {
-    var count = 0, 
+    var count = 0,
         cb = function () {
             return function () {count++}
         };
-    
+
     apple.on('*', cb());
     apple.on('te*', cb());
     // This should NOT add to count. Regression test for issue #4
@@ -116,3 +116,81 @@ exports['Test on and off'] = function (test) {
     test.done();
 };
 
+exports['Mixin to constructor'] = function (test) {
+    function Fruit(name) {
+        this.name = name;
+    }
+
+    Emitter.mixin(Fruit);
+    console.log(Fruit);
+
+    Fruit.prototype.test = function () {
+        this.emit('test', this.name);
+    };
+
+    // set up some test fruits
+    var apple = new Fruit('apple'),
+        orange = new Fruit('orange');
+    var count, cb1, cb2;
+
+    count = 0;
+    cb1 = function () {
+        count++;
+    };
+    cb2 = function () {
+        count++;
+    };
+
+    orange.on('test', cb1);
+    orange.on('test2', cb2);
+    orange.test();
+
+    test.equal(count, 1);
+
+    orange.off('test', cb1);
+    orange.test();
+    test.equal(count, 1);
+
+    orange.emit('test2');
+    test.equal(count, 2);
+
+    test.done();
+};
+
+
+exports['Mixin to plain javascript objects'] = function (test) {
+    var orange = {};
+    Emitter.mixin(orange);
+
+    var apple = {};
+    Emitter.mixin(apple);
+
+    orange.test = apple.test = function () {
+        this.emit('test', this.name);
+    };
+
+    var count, cb1, cb2;
+
+    count = 0;
+    cb1 = function () {
+        count++;
+    };
+    cb2 = function () {
+        count++;
+    };
+
+    orange.on('test', cb1);
+    orange.on('test2', cb2);
+    orange.test();
+
+    test.equal(count, 1);
+
+    orange.off('test', cb1);
+    orange.test();
+    test.equal(count, 1);
+
+    orange.emit('test2');
+    test.equal(count, 2);
+
+    test.done();
+};

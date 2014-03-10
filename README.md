@@ -21,13 +21,13 @@ var Emitter = require('./wildemitter');
 // the example object we're making
 function Fruit(name) {
     this.name = name;
-    
-    // call emitter with this context
-    Emitter.call(this);
 }
 
-// inherit from Emitter
-Fruit.prototype = new Emitter;
+//Mix the emitter behaviour into Fruit
+Emitter.mixin(Fruit);
+
+// You could alternatively inherit from emitter:
+// Fruit.prototype = new Emitter;
 
 // a function that emits an events when called
 Fruit.prototype.test = function () {
