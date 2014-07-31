@@ -1,7 +1,7 @@
 # WildEmitter - A lightweight event emitter that supports wildcard handlers
 
 ## What's an event emitter?
-If you've ever listened for a click event in a browser you've used an emitter. But, user interaction isn't the only thing that can trigger an event worth listening to. You can also make other objects capable of emitting events. That's what wildemitter is for. You can extend your objects with it so that you can emit events from them and register handlers on them. This pattern helps you write more re-usable code becaause your objct doen't have to know how it's going to be used. It can simply emit events any time something happens that other code *may* be interested in.
+If you've ever listened for a click event in a browser you've used an emitter. But, user interaction isn't the only thing that can trigger an event worth listening to. You can also make other objects capable of emitting events. That's what wildemitter is for. You can extend your objects with it so that you can emit events from them and register handlers on them. This pattern helps you write more re-usable code because your object doen't have to know how it's going to be used. It can simply emit events any time something happens that other code *may* be interested in.
 
 You'll see this type of pattern a lot in node.js. Where lots of things in the standard libraries inherit from EventEmitter and emit various events to indicate progress, errors, completion, etc.
 
