@@ -83,6 +83,9 @@ WildEmitter.prototype.off = function (event, fn) {
     // remove specific handler
     i = callbacks.indexOf(fn);
     callbacks.splice(i, 1);
+    if (callbacks.length === 0) {
+        delete this.callbacks[event];
+    }
     return this;
 };
 

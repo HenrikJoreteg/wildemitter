@@ -91,6 +91,7 @@ exports['Test once for multiple functions'] = function (test) {
 
 exports['Test on and off'] = function (test) {
     var count, cb1, cb2;
+    var orange = new Fruit('orange');
 
     count = 0;
     cb1 = function () {
@@ -112,6 +113,12 @@ exports['Test on and off'] = function (test) {
 
     orange.emit('test2');
     test.equal(count, 2);
+
+    orange.off('test2', cb2);
+
+    //ensure callbacks array is removed entirely
+    test.ok(orange.callbacks.test == null);
+    test.ok(orange.callbacks.test2 == null);
 
     test.done();
 };
