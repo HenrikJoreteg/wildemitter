@@ -1,4 +1,5 @@
 function WildEmitter() {
+    this.isWildEmitter = true;
     this.callbacks = {};
 }
 

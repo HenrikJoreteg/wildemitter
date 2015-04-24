@@ -20,6 +20,7 @@ the event name as the first argument.
 module.exports = WildEmitter;
 
 function WildEmitter() {
+    this.isWildEmitter = true;
     this.callbacks = {};
 }
 
