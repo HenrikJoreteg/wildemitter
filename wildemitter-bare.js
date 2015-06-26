@@ -83,11 +83,10 @@ WildEmitter.prototype.emit = function (event) {
     if (callbacks) {
         listeners = callbacks.slice();
         for (i = 0, len = listeners.length; i < len; ++i) {
-            if (listeners[i]) {
-                listeners[i].apply(this, args);
-            } else {
+            if (!listeners[i]) {
                 break;
             }
+            listeners[i].apply(this, args);
         }
     }
 
@@ -95,11 +94,10 @@ WildEmitter.prototype.emit = function (event) {
         len = specialCallbacks.length;
         listeners = specialCallbacks.slice();
         for (i = 0, len = listeners.length; i < len; ++i) {
-            if (listeners[i]) {
-                listeners[i].apply(this, [event].concat(args));
-            } else {
+            if (!listeners[i]) {
                 break;
             }
+            listeners[i].apply(this, [event].concat(args));
         }
     }
 
