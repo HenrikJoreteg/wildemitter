@@ -1,7 +1,7 @@
 # WildEmitter - A lightweight event emitter that supports wildcard handlers
 
 ## What's an event emitter?
-If you've ever listened for a click event in a browser you've used an emitter. But, user interaction isn't the only thing that can trigger an event worth listening to. You can also make other objects capable of emitting events. That's what wildemitter is for. You can extend your objects with it so that you can emit events from them and register handlers on them. This pattern helps you write more re-usable code because your object doen't have to know how it's going to be used. It can simply emit events any time something happens that other code *may* be interested in.
+If you've ever listened for a click event in a browser you've used an emitter. But, user interaction isn't the only thing that can trigger an event worth listening to. You can also make other objects capable of emitting events. That's what wildemitter is for. You can extend your objects with it so that you can emit events from them and register handlers on them. This pattern helps you write more re-usable code because your object don't have to know how it's going to be used. It can simply emit events any time something happens that other code *may* be interested in.
 
 You'll see this type of pattern a lot in node.js. Where lots of things in the standard libraries inherit from EventEmitter and emit various events to indicate progress, errors, completion, etc.
 
@@ -11,7 +11,7 @@ Well, yes there are, but not quite what I wanted. This one is largely based on t
 - Super lightweight
 - Support for browser/node.js (browser use requires a CommonJS wrapper of some kind, like Stitch or Browserify)
 - Support for wildcard handlers (`*` or `something*`)
-- Support for grouping registered handlers and aun unbinding them all by their group name. This is really handy when, for example, you want unbind all handlers associated with a given "sub-page" within a single page app. 
+- Support for grouping registered handlers and unbinding them all by their group name. This is really handy when, for example, you want unbind all handlers associated with a given "sub-page" within a single page app.
 
 ##How do I use it?
 
@@ -21,7 +21,7 @@ var Emitter = require('./wildemitter');
 // the example object we're making
 function Fruit(name) {
     this.name = name;
-    
+
     // call emitter with this context
     Emitter.call(this);
 }
@@ -101,7 +101,7 @@ You can also run build by itself: `npm run build`
 
 ## Credits
 
-Written by [@HenrikJoreteg](http://twitter.com/henrikjoreteg) inspired by TJ's emitter component. 
+Written by [@HenrikJoreteg](http://twitter.com/henrikjoreteg) inspired by TJ's emitter component.
 
 Contributors: https://github.com/HenrikJoreteg/wildemitter/graphs/contributors
 
