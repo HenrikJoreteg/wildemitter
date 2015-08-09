@@ -16,7 +16,7 @@ var fs = require('fs'),
 var mustache = require('mustache'),
     yetify = require('yetify'),
     colors = require('colors');
-    
+
 var code = mustache.render(template, context);
 
 console.log('\n' + yetify.logo());
@@ -27,4 +27,4 @@ console.log(fileName.bold + ' file built.'.grey);
 fs.writeFileSync(bareOutputPath, context.emitter, 'utf-8');
 
 console.log(bareFileName.bold + ' file built.'.grey + '\n');
-process.exit(0);    
+process.exit(0);

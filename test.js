@@ -21,7 +21,7 @@ exports['Make sure wildcard handlers work'] = function (test) {
         cb = function () {
             return function () {count++}
         };
-    
+
     apple.on('*', cb());
     apple.on('te*', cb());
     // This should NOT add to count. Regression test for issue #4
@@ -45,7 +45,7 @@ exports['Make sure wildcard handlers work'] = function (test) {
 };
 
 exports['Test group binding and unbinding'] = function (test) {
-    var count = 0, 
+    var count = 0,
         cb = function () {
             return function () {count++}
         };
@@ -122,4 +122,3 @@ exports['Test on and off'] = function (test) {
 
     test.done();
 };
-
