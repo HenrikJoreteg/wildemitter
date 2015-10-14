@@ -22,13 +22,10 @@ var Emitter = require('./wildemitter');
 // the example object we're making
 function Fruit(name) {
     this.name = name;
-
-    // call emitter with this context
-    Emitter.call(this);
 }
 
-// inherit from Emitter
-Fruit.prototype = new Emitter;
+//Mix the emitter behaviour into Fruit
+Emitter.mixin(Fruit);
 
 // a function that emits an events when called
 Fruit.prototype.test = function () {
@@ -82,6 +79,22 @@ orange.on('*', 'today', someHandler);
 
 // we can now unbind all three of those handlers like this
 orange.releaseGroup('today');
+```
+
+### The old way
+
+If you don't want to use `Emitter.mixin`, you can still use it the old way:
+
+```js
+function Fruit(name) {
+    this.name = name;
+    
+    // call emitter with this context
+    Emitter.call(this);
+}
+
+// and also inherit from Emitter
+Fruit.prototype = new Emitter;
 ```
 
 ## Including
