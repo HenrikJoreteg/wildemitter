@@ -3,6 +3,8 @@ function WildEmitter() { }
 WildEmitter.mixin = function (constructor) {
     var prototype = constructor.prototype || constructor;
 
+    prototype.isWildEmitter= true;
+
     // Listen on the given `event` with `fn`. Store a group name if present.
     prototype.on = function (event, groupName, fn) {
         this.callbacks = this.callbacks || {};
