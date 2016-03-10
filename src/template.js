@@ -12,7 +12,7 @@
     } else {
         // Browser globals (root is window)
         root.WildEmitter = factory();
-  }
+   }
 }(this, function () {
 
 {{{emitter}}}
