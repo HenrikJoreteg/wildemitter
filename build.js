@@ -8,8 +8,8 @@ var fs = require('fs'),
     context = {
         emitter: fs.readFileSync(__dirname + "/src/core.js").toString(),
         intro: fs.readFileSync(__dirname + "/src/intro.js").toString()
-    },
-    outputPath = __dirname + '/' + fileName,
+    }
+    outputPath = __dirname + '/' + fileName;
 
 var mustache = require('mustache'),
     yetify = require('yetify'),
