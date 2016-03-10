@@ -136,7 +136,7 @@ exports['Mixin to constructor'] = function (test) {
     };
 
     // set up a test vegetable
-    var asparagus = new Vegetable('asparagus');
+    var lettuce = new Vegetable('lettuce');
     var count, cb1, cb2;
 
     count = 0;
