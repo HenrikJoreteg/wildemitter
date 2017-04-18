@@ -119,7 +119,7 @@ Written by [@HenrikJoreteg](http://twitter.com/henrikjoreteg) inspired by TJ's e
 
 Contributors: https://github.com/HenrikJoreteg/wildemitter/graphs/contributors
 
-##License
+## License
 MIT
 
 If you like this follow [@HenrikJoreteg](http://twitter.com/henrikjoreteg) on twitter.
