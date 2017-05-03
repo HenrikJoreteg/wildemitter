@@ -1,6 +1,6 @@
 {
   "name": "wildemitter",
-  "main": "wildemitter-bare.js",
+  "main": "wildemitter.js",
   "homepage": "https://github.com/HenrikJoreteg/wildemitter",
   "authors": [
     "Henrik Joreteg <henrik@andyet.net>"
