@@ -1,7 +1,7 @@
 {
   "name": "wildemitter",
   "version": "1.2.0",
-  "author": "Henrik Joreteg <henrik@andyet.net>",
+  "author": "Henrik Joreteg <henrik@joreteg.com>",
   "scripts": {
     "build": "node ./build.js",
     "test": "npm run build && nodeunit test.js"
@@ -14,8 +14,7 @@
   "devDependencies": {
     "colors": "~0.6.2",
     "mustache": "~0.8.1",
-    "nodeunit": "~0.8.2",
-    "yetify": "~0.1.0"
+    "nodeunit": "~0.8.2"
   },
   "keywords": [
     "events",
